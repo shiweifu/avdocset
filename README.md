@@ -14,10 +14,10 @@ LeanCloud 文档的 dashdoc 版
 
 ### 那么，如何使用？
 
-苟. 首先，你得有个 Dash
-利. clone 本项目
-国. star 本项目
-家. archive 里面有我已经打包好的 dashdoc 档案，双击即可倒入 Dash。然后就能看上精美的文档啦
+苟. 首先，你得有个 Dash  
+利. clone 本项目  
+国. star 本项目  
+家. archive 里面有我已经打包好的 dashdoc 档案，双击即可倒入 Dash。然后就能看上精美的文档啦  
 
 ### 文档不够怎么办？
 
