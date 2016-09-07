@@ -21,7 +21,9 @@ LeanCloud 文档的 dashdoc 版
 
 ### 文档不够怎么办？
 
-> 本 repo 自带生成工具，你可以很容易的生成任意 LeanCloud 的文档。关于这部分，够再聊个 issue 的了。
+本 repo 自带生成工具，你可以很容易的生成任意 LeanCloud 的文档。关于这部分，够再聊个 issue 的了。
+也可以提 issue，告诉我你想看啥，有空我就会打包好放进去。
+
 
 
 
