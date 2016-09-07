@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>LeanCloudDoc</title>
+
+<style>
+	
+	body{
+    margin: 0 auto;
+    font-family: "Microsoft YaHei", arial,sans-serif;
+    color: #444444;
+    line-height: 1;
+    padding: 30px;
+}
+@media screen and (min-width: 768px) {
+    body {
+        width: 748px;
+        margin: 10px auto;
+    }
+}
+h1, h2, h3, h4 {
+    color: #111111;
+    font-weight: 400;
+    margin-top: 1em;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: Georgia, Palatino, serif;
+}
+h1, h2, h3, h4, h5, p , dl{
+    margin-bottom: 16px;
+    padding: 0;
+}
+h1 {
+    font-size: 48px;
+    line-height: 54px;
+}
+h2 {
+    font-size: 36px;
+    line-height: 42px;
+}
+h1, h2 {
+    border-bottom: 1px solid #EFEAEA;
+    padding-bottom: 10px;
+}
+h3 {
+    font-size: 24px;
+    line-height: 30px;
+}
+h4 {
+    font-size: 21px;
+    line-height: 26px;
+}
+h5 {
+    font-size: 18px;
+    list-style: 23px;
+}
+a {
+    color: #0099ff;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+a:hover {
+    text-decoration: none;
+    color: #ff6600;
+}
+a:visited {
+    /*color: purple;*/
+}
+ul, ol {
+    padding: 0;
+    padding-left: 24px;
+    margin: 0;
+}
+li {
+    line-height: 24px;
+}
+p, ul, ol {
+    font-size: 16px;
+    line-height: 24px;
+}
+
+ol ol, ul ol {
+    list-style-type: lower-roman;
+}
+
+/*pre {
+    padding: 0px 24px;
+    max-width: 800px;
+    white-space: pre-wrap;
+}
+code {
+    font-family: Consolas, Monaco, Andale Mono, monospace;
+    line-height: 1.5;
+    font-size: 13px;
+}*/
+
+code, pre {
+    border-radius: 3px;
+    background-color:#f7f7f7;
+    color: inherit;
+}
+
+code {
+    font-family: Consolas, Monaco, Andale Mono, monospace;
+    margin: 0 2px;
+}
+
+pre {
+    line-height: 1.7em;
+    overflow: auto;
+    padding: 6px 10px;
+    border-left: 5px solid #6CE26C;
+}
+
+pre > code {
+    border: 0;
+    display: inline;
+    max-width: initial;
+    padding: 0;
+    margin: 0;
+    overflow: initial;
+    line-height: inherit;
+    font-size: .85em;
+    white-space: pre;
+    background: 0 0;
+
+}
+
+code {
+    color: #666555;
+}
+
+
+/** markdown preview plus 对于代码块的处理有些问题, 所以使用统一的颜色 */
+/*code .keyword {
+  color: #8959a8;
+}
+
+code .number {
+  color: #f5871f;
+}
+
+code .comment {
+  color: #998
+}*/
+
+aside {
+    display: block;
+    float: right;
+    width: 390px;
+}
+blockquote {
+    border-left:.5em solid #eee;
+    padding: 0 0 0 2em;
+    margin-left:0;
+}
+blockquote  cite {
+    font-size:14px;
+    line-height:20px;
+    color:#bfbfbf;
+}
+blockquote cite:before {
+    content: '\2014 \00A0';
+}
+
+blockquote p {
+    color: #666;
+}
+hr {
+    text-align: left;
+    color: #999;
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+}
+
+dl {
+    padding: 0;
+}
+
+dl dt {
+    padding: 10px 0;
+    margin-top: 16px;
+    font-size: 1em;
+    font-style: italic;
+    font-weight: bold;
+}
+
+dl dd {
+    padding: 0 16px;
+    margin-bottom: 16px;
+}
+
+dd {
+    margin-left: 0;
+}
+
+/* Code below this line is copyright Twitter Inc. */
+
+button,
+input,
+select,
+textarea {
+    font-size: 100%;
+    margin: 0;
+    vertical-align: baseline;
+    *vertical-align: middle;
+}
+button, input {
+    line-height: normal;
+    *overflow: visible;
+}
+button::-moz-focus-inner, input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+    cursor: pointer;
+    -webkit-appearance: button;
+}
+input[type=checkbox], input[type=radio] {
+    cursor: pointer;
+}
+/* override default chrome & firefox settings */
+input:not([type="image"]), textarea {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+input[type="search"] {
+    -webkit-appearance: textfield;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+label,
+input,
+select,
+textarea {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: normal;
+    margin-bottom: 18px;
+}
+input[type=checkbox], input[type=radio] {
+    cursor: pointer;
+    margin-bottom: 0;
+}
+input[type=text],
+input[type=password],
+textarea,
+select {
+    display: inline-block;
+    width: 210px;
+    padding: 4px;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 18px;
+    height: 18px;
+    color: #808080;
+    border: 1px solid #ccc;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+select, input[type=file] {
+    height: 27px;
+    line-height: 27px;
+}
+textarea {
+    height: auto;
+}
+/* grey out placeholders */
+:-moz-placeholder {
+    color: #bfbfbf;
+}
+::-webkit-input-placeholder {
+    color: #bfbfbf;
+}
+input[type=text],
+input[type=password],
+select,
+textarea {
+    -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+    -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+    transition: border linear 0.2s, box-shadow linear 0.2s;
+    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+input[type=text]:focus, input[type=password]:focus, textarea:focus {
+    outline: none;
+    border-color: rgba(82, 168, 236, 0.8);
+    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
+    -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
+}
+/* buttons */
+button {
+    display: inline-block;
+    padding: 4px 14px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    background-color: #0064cd;
+    background-repeat: repeat-x;
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#049cdb), to(#0064cd));
+    background-image: -moz-linear-gradient(top, #049cdb, #0064cd);
+    background-image: -ms-linear-gradient(top, #049cdb, #0064cd);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #049cdb), color-stop(100%, #0064cd));
+    background-image: -webkit-linear-gradient(top, #049cdb, #0064cd);
+    background-image: -o-linear-gradient(top, #049cdb, #0064cd);
+    background-image: linear-gradient(top, #049cdb, #0064cd);
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    border: 1px solid #004b9a;
+    border-bottom-color: #003f81;
+    -webkit-transition: 0.1s linear all;
+    -moz-transition: 0.1s linear all;
+    transition: 0.1s linear all;
+    border-color: #0064cd #0064cd #003f81;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+button:hover {
+    color: #fff;
+    background-position: 0 -15px;
+    text-decoration: none;
+}
+button:active {
+    -webkit-box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+table {
+    *border-collapse: collapse; /* IE7 and lower */
+    border-spacing: 0;
+    width: 100%;
+}
+table {
+    border: solid #ccc 1px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    /*-webkit-box-shadow: 0 1px 1px #ccc;
+    -moz-box-shadow: 0 1px 1px #ccc;
+    box-shadow: 0 1px 1px #ccc;   */
+}
+table tr:hover {
+    background: #fbf8e9;
+    -o-transition: all 0.1s ease-in-out;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+table td, .table th {
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #dce9f9;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ebf3fc), to(#dce9f9));
+    background-image: -webkit-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image:    -moz-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image:     -ms-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image:      -o-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image:         linear-gradient(top, #ebf3fc, #dce9f9);
+    /*-webkit-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
+    -moz-box-shadow:0 1px 0 rgba(255,255,255,.8) inset;
+    box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;*/
+    border-top: none;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+    padding: 5px;
+}
+
+table td:first-child, table th:first-child {
+    border-left: none;
+}
+
+table th:first-child {
+    -moz-border-radius: 6px 0 0 0;
+    -webkit-border-radius: 6px 0 0 0;
+    border-radius: 6px 0 0 0;
+}
+table th:last-child {
+    -moz-border-radius: 0 6px 0 0;
+    -webkit-border-radius: 0 6px 0 0;
+    border-radius: 0 6px 0 0;
+}
+table th:only-child{
+    -moz-border-radius: 6px 6px 0 0;
+    -webkit-border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 0 0;
+}
+table tr:last-child td:first-child {
+    -moz-border-radius: 0 0 0 6px;
+    -webkit-border-radius: 0 0 0 6px;
+    border-radius: 0 0 0 6px;
+}
+table tr:last-child td:last-child {
+    -moz-border-radius: 0 0 6px 0;
+    -webkit-border-radius: 0 0 6px 0;
+    border-radius: 0 0 6px 0;
+}
+</style>
+
+</head>
+<body>
+ 
+ <h3>获取对象</h3>
+
+<p>每个被成功保存在云端的对象会有一个唯一的 Id 标识 <code>objectId</code>，因此获取对象的最基本的方法就是根据 <code>objectId</code> 来查询：</p>
+
+<pre><code class="java">        AVQuery&lt;AVObject&gt; avQuery = new AVQuery&lt;&gt;(&quot;Todo&quot;);
+        avQuery.getInBackground(&quot;558e20cbe4b060308e3eb36c&quot;, new GetCallback&lt;AVObject&gt;() {
+            @Override
+            public void done(AVObject avObject, AVException e) {
+                // object 就是 id 为 558e20cbe4b060308e3eb36c 的 Todo 对象实例
+            }
+        });
+</code></pre>
+
+<p>如果不想使用查询，还可以通过从本地构建一个 <code>objectId</code>，然后调用接口从云端把这个 <code>objectId</code> 的数据拉取到本地，示例代码如下：</p>
+
+<pre><code class="java">        // 第一参数是 className,第二个参数是 objectId
+        AVObject todo = AVObject.createWithoutData(&quot;Todo&quot;, &quot;558e20cbe4b060308e3eb36c&quot;);
+        todo.fetchInBackground(new GetCallback&lt;AVObject&gt;() {
+            @Override
+            public void done(AVObject avObject, AVException e) {
+                String title = avObject.getString(&quot;title&quot;);// 读取 title
+                String content = avObject.getString(&quot;content&quot;);// 读取 content
+            }
+        });
+</code></pre>
+
+<h4>获取 objectId</h4>
+
+<p>每一次对象存储成功之后，云端都会返回 <code>objectId</code>，它是一个全局唯一的属性。</p>
+
+<pre><code class="java">        final AVObject todo = new AVObject(&quot;Todo&quot;);
+        todo.put(&quot;title&quot;, &quot;工程师周会&quot;);
+        todo.put(&quot;content&quot;, &quot;每周工程师会议，周一下午2点&quot;);
+        todo.put(&quot;location&quot;, &quot;会议室&quot;);// 只要添加这一行代码，服务端就会自动添加这个字段
+        todo.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(AVException e) {
+                if (e == null) {
+                    // 存储成功
+                    Log.d(TAG, todo.getObjectId());// 保存成功之后，objectId 会自动从服务端加载到本地
+                } else {
+                    // 失败的话，请检查网络环境以及 SDK 配置是否正确
+                }
+            }
+        });
+</code></pre>
+
+<h4>访问对象的属性</h4>
+
+<p>访问 Todo 的属性的方式为：</p>
+
+<pre><code class="java">        AVQuery&lt;AVObject&gt; avQuery = new AVQuery&lt;&gt;(&quot;Todo&quot;);
+        avQuery.getInBackground(&quot;558e20cbe4b060308e3eb36c&quot;, new GetCallback&lt;AVObject&gt;() {
+            @Override
+            public void done(AVObject avObject, AVException e) {
+                // object 就是 id 为 558e20cbe4b060308e3eb36c 的 Todo 对象实例
+
+                int priority = avObject.getInt(&quot;priority&quot;);
+                String location = avObject.getString(&quot;location&quot;);
+                String title = avObject.getString(&quot;title&quot;);
+                String content = avObject.getString(&quot;content&quot;);
+
+                // 获取三个特殊属性
+                String objectId = avObject.getObjectId();
+                Date updatedAt = avObject.getUpdatedAt();
+                Date createdAt = avObject.getCreatedAt();
+            }
+        });
+</code></pre>
+
+<p>请注意以上代码中访问三个特殊属性 <code>objectId</code>、<code>createdAt</code>、<code>updatedAt</code> 的方式。</p>
+
+<p>如果访问了并不存在的属性，SDK 并不会抛出异常，而是会返回空值。</p>
+
+<h4>默认属性</h4>
+
+<p>默认属性是所有对象都会拥有的属性，它包括 <code>objectId</code>、<code>createdAt</code>、<code>updatedAt</code>。</p>
+
+<dl>
+  <dt>`createdAt`</dt>
+  <dd>对象第一次保存到云端的时间戳。该时间一旦被云端创建，在之后的操作中就不会被修改。它采用国际标准时区 UTC，开发者可能需要根据客户端当前的时区做转化。</dd>
+  <dt>`updatedAt`</dt>
+  <dd>对象最后一次被修改（或最近一次被更新）的时间。</dd>
+</dl>
+
+<h4>同步对象</h4>
+
+<p>多终端共享一个数据时，为了确保当前客户端拿到的对象数据是最新的，可以调用刷新接口来确保本地数据与云端的同步：</p>
+
+<pre><code class="java">        // 假如已知了 objectId 可以用如下的方式构建一个 AVObject
+        AVObject anotherTodo = AVObject.createWithoutData(&quot;Todo&quot;, &quot;5656e37660b2febec4b35ed7&quot;);
+        // 然后调用刷新的方法，将数据从服务端拉到本地
+        anotherTodo.fetchIfNeededInBackground(new GetCallback&lt;AVObject&gt;() {
+            @Override
+            public void done(AVObject avObject, AVException e) {
+                // 调用 fetchIfNeededInBackground 和 refreshInBackground 效果是一样的。
+            }
+        });
+</code></pre>
+
+<p>在更新对象操作后，对象本地的 <code>updatedAt</code> 字段（最后更新时间）会被刷新，直到下一次 save 或 fetch 操作，<code>updatedAt</code> 的最新值才会被同步到云端，这样做是为了减少网络流量传输。</p>
+
+<p>如果需要在保存或更新之后让本地数据自动与云端保持一致，可以使用 <a href="#%E4%BF%9D%E5%AD%98%E9%80%89%E9%A1%B9">保存选项 <code>fetchWhenSave</code></a>：</p>
+
+<pre><code>        todo.setFetchWhenSave(true);// 设置 fetchWhenSave 为 true
+        todo.saveInBackground();// 如此
+</code></pre>
+
+<h4>同步指定属性</h4>
+
+<p>目前 Todo 这个类已有四个自定义属性：<code>priority</code>、<code>content</code>、<code>location</code> 和 <code>title</code>。为了节省流量，现在只想刷新 <code>priority</code> 和 <code>location</code> 可以使用如下方式：</p>
+
+<pre><code class="java">        AVObject theTodo = AVObject.createWithoutData(&quot;Todo&quot;, &quot;564d7031e4b057f4f3006ad1&quot;);
+        String keys = &quot;priority,location&quot;;// 指定刷新的 key 字符串
+        theTodo.fetchInBackground(keys, new GetCallback&lt;AVObject&gt;() {
+            @Override
+            public void done(AVObject avObject, AVException e) {
+                // theTodo 的 location 和 content 属性的值就是与服务端一致的
+                String priority = avObject.getString(&quot;priority&quot;);
+                String location = avObject.getString(&quot;location&quot;);
+            }
+        });
+</code></pre>
+
+<p><strong>刷新操作会强行使用云端的属性值覆盖本地的属性</strong>。因此如果本地有属性修改，请慎用这类接口。</p>
+
+</body>
+</html>

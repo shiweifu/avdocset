@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>LeanCloudDoc</title>
+
+<style>
+	
+	body{
+    margin: 0 auto;
+    font-family: "Microsoft YaHei", arial,sans-serif;
+    color: #444444;
+    line-height: 1;
+    padding: 30px;
+}
+@media screen and (min-width: 768px) {
+    body {
+        width: 748px;
+        margin: 10px auto;
+    }
+}
+h1, h2, h3, h4 {
+    color: #111111;
+    font-weight: 400;
+    margin-top: 1em;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: Georgia, Palatino, serif;
+}
+h1, h2, h3, h4, h5, p , dl{
+    margin-bottom: 16px;
+    padding: 0;
+}
+h1 {
+    font-size: 48px;
+    line-height: 54px;
+}
+h2 {
+    font-size: 36px;
+    line-height: 42px;
+}
+h1, h2 {
+    border-bottom: 1px solid #EFEAEA;
+    padding-bottom: 10px;
+}
+h3 {
+    font-size: 24px;
+    line-height: 30px;
+}
+h4 {
+    font-size: 21px;
+    line-height: 26px;
+}
+h5 {
+    font-size: 18px;
+    list-style: 23px;
+}
+a {
+    color: #0099ff;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+a:hover {
+    text-decoration: none;
+    color: #ff6600;
+}
+a:visited {
+    /*color: purple;*/
+}
+ul, ol {
+    padding: 0;
+    padding-left: 24px;
+    margin: 0;
+}
+li {
+    line-height: 24px;
+}
+p, ul, ol {
+    font-size: 16px;
+    line-height: 24px;
+}
+
+ol ol, ul ol {
+    list-style-type: lower-roman;
+}
+
+/*pre {
+    padding: 0px 24px;
+    max-width: 800px;
+    white-space: pre-wrap;
+}
+code {
+    font-family: Consolas, Monaco, Andale Mono, monospace;
+    line-height: 1.5;
+    font-size: 13px;
+}*/
+
+code, pre {
+    border-radius: 3px;
+    background-color:#f7f7f7;
+    color: inherit;
+}
+
+code {
+    font-family: Consolas, Monaco, Andale Mono, monospace;
+    margin: 0 2px;
+}
+
+pre {
+    line-height: 1.7em;
+    overflow: auto;
+    padding: 6px 10px;
+    border-left: 5px solid #6CE26C;
+}
+
+pre > code {
+    border: 0;
+    display: inline;
+    max-width: initial;
+    padding: 0;
+    margin: 0;
+    overflow: initial;
+    line-height: inherit;
+    font-size: .85em;
+    white-space: pre;
+    background: 0 0;
+
+}
+
+code {
+    color: #666555;
+}
+
+
+/** markdown preview plus 对于代码块的处理有些问题, 所以使用统一的颜色 */
+/*code .keyword {
+  color: #8959a8;
+}
+
+code .number {
+  color: #f5871f;
+}
+
+code .comment {
+  color: #998
+}*/
+
+aside {
+    display: block;
+    float: right;
+    width: 390px;
+}
+blockquote {
+    border-left:.5em solid #eee;
+    padding: 0 0 0 2em;
+    margin-left:0;
+}
+blockquote  cite {
+    font-size:14px;
+    line-height:20px;
+    color:#bfbfbf;
+}
+blockquote cite:before {
+    content: '\2014 \00A0';
+}
+
+blockquote p {
+    color: #666;
+}
+hr {
+    text-align: left;
+    color: #999;
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+}
+
+dl {
+    padding: 0;
+}
+
+dl dt {
+    padding: 10px 0;
+    margin-top: 16px;
+    font-size: 1em;
+    font-style: italic;
+    font-weight: bold;
+}
+
+dl dd {
+    padding: 0 16px;
+    margin-bottom: 16px;
+}
+
+dd {
+    margin-left: 0;
+}
+
+/* Code below this line is copyright Twitter Inc. */
+
+button,
+input,
+select,
+textarea {
+    font-size: 100%;
+    margin: 0;
+    vertical-align: baseline;
+    *vertical-align: middle;
+}
+button, input {
+    line-height: normal;
+    *overflow: visible;
+}
+button::-moz-focus-inner, input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+    cursor: pointer;
+    -webkit-appearance: button;
+}
+input[type=checkbox], input[type=radio] {
+    cursor: pointer;
+}
+/* override default chrome & firefox settings */
+input:not([type="image"]), textarea {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+input[type="search"] {
+    -webkit-appearance: textfield;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+label,
+input,
+select,
+textarea {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: normal;
+    margin-bottom: 18px;
+}
+input[type=checkbox], input[type=radio] {
+    cursor: pointer;
+    margin-bottom: 0;
+}
+input[type=text],
+input[type=password],
+textarea,
+select {
+    display: inline-block;
+    width: 210px;
+    padding: 4px;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 18px;
+    height: 18px;
+    color: #808080;
+    border: 1px solid #ccc;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+select, input[type=file] {
+    height: 27px;
+    line-height: 27px;
+}
+textarea {
+    height: auto;
+}
+/* grey out placeholders */
+:-moz-placeholder {
+    color: #bfbfbf;
+}
+::-webkit-input-placeholder {
+    color: #bfbfbf;
+}
+input[type=text],
+input[type=password],
+select,
+textarea {
+    -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+    -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+    transition: border linear 0.2s, box-shadow linear 0.2s;
+    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+input[type=text]:focus, input[type=password]:focus, textarea:focus {
+    outline: none;
+    border-color: rgba(82, 168, 236, 0.8);
+    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
+    -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
+}
+/* buttons */
+button {
+    display: inline-block;
+    padding: 4px 14px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    background-color: #0064cd;
+    background-repeat: repeat-x;
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#049cdb), to(#0064cd));
+    background-image: -moz-linear-gradient(top, #049cdb, #0064cd);
+    background-image: -ms-linear-gradient(top, #049cdb, #0064cd);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #049cdb), color-stop(100%, #0064cd));
+    background-image: -webkit-linear-gradient(top, #049cdb, #0064cd);
+    background-image: -o-linear-gradient(top, #049cdb, #0064cd);
+    background-image: linear-gradient(top, #049cdb, #0064cd);
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    border: 1px solid #004b9a;
+    border-bottom-color: #003f81;
+    -webkit-transition: 0.1s linear all;
+    -moz-transition: 0.1s linear all;
+    transition: 0.1s linear all;
+    border-color: #0064cd #0064cd #003f81;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+button:hover {
+    color: #fff;
+    background-position: 0 -15px;
+    text-decoration: none;
+}
+button:active {
+    -webkit-box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+table {
+    *border-collapse: collapse; /* IE7 and lower */
+    border-spacing: 0;
+    width: 100%;
+}
+table {
+    border: solid #ccc 1px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    /*-webkit-box-shadow: 0 1px 1px #ccc;
+    -moz-box-shadow: 0 1px 1px #ccc;
+    box-shadow: 0 1px 1px #ccc;   */
+}
+table tr:hover {
+    background: #fbf8e9;
+    -o-transition: all 0.1s ease-in-out;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+table td, .table th {
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #dce9f9;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ebf3fc), to(#dce9f9));
+    background-image: -webkit-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image:    -moz-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image:     -ms-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image:      -o-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image:         linear-gradient(top, #ebf3fc, #dce9f9);
+    /*-webkit-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
+    -moz-box-shadow:0 1px 0 rgba(255,255,255,.8) inset;
+    box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;*/
+    border-top: none;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+    padding: 5px;
+}
+
+table td:first-child, table th:first-child {
+    border-left: none;
+}
+
+table th:first-child {
+    -moz-border-radius: 6px 0 0 0;
+    -webkit-border-radius: 6px 0 0 0;
+    border-radius: 6px 0 0 0;
+}
+table th:last-child {
+    -moz-border-radius: 0 6px 0 0;
+    -webkit-border-radius: 0 6px 0 0;
+    border-radius: 0 6px 0 0;
+}
+table th:only-child{
+    -moz-border-radius: 6px 6px 0 0;
+    -webkit-border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 0 0;
+}
+table tr:last-child td:first-child {
+    -moz-border-radius: 0 0 0 6px;
+    -webkit-border-radius: 0 0 0 6px;
+    border-radius: 0 0 0 6px;
+}
+table tr:last-child td:last-child {
+    -moz-border-radius: 0 0 6px 0;
+    -webkit-border-radius: 0 0 6px 0;
+    border-radius: 0 0 6px 0;
+}
+</style>
+
+</head>
+<body>
+ 
+ <h3>数据查询 API</h3>
+
+<p>统计 API 可以获取一个应用的统计数据。因为统计数据的隐私敏感性，统计数据查询 API 必须使用 master key 的签名方式鉴权，请参考 <a href="#%E6%9B%B4%E5%AE%89%E5%85%A8%E7%9A%84%E9%89%B4%E6%9D%83%E6%96%B9%E5%BC%8F">更安全的鉴权方式</a> 一节。</p>
+
+<p>获取某个应用的基本信息，包括各平台的应用版本，应用发布渠道。（注意：下面示例直接使用带 <code>master</code> 标识的 X-LC-Key，不过我们推荐在实际使用中采用 <a href="rest_api.html#%E6%9B%B4%E5%AE%89%E5%85%A8%E7%9A%84%E9%89%B4%E6%9D%83%E6%96%B9%E5%BC%8F">新鉴权方式</a> 加密，不要明文传递 Key。）</p>
+
+<pre><code class="sh">curl -X GET \
+  -H &quot;X-LC-Id: {{appid}}&quot; \
+  -H &quot;X-LC-Key: {{masterkey}},master&quot; \
+  https://api.leancloud.cn/1.1/stats/appinfo
+</code></pre>
+
+<p>返回的 JSON 数据：</p>
+
+<pre><code class="json">{
+  &quot;iOS&quot;: {
+      &quot;versions&quot;: [&quot;2.3.10&quot;,&quot;2.3&quot;,&quot;2.4&quot;,&quot;2.5&quot;,&quot;2.6&quot;,&quot;2.7&quot;,&quot;2.8&quot;,&quot;2.6.1&quot;],
+      &quot;channels&quot;: [&quot;App Store&quot;]
+  },
+  &quot;Android&quot;: {
+      &quot;versions&quot;: [&quot;1.7.2.1&quot;,&quot;1.4.0&quot;,&quot;1.5.0&quot;,&quot;1.6.0&quot;,&quot;1.5.1&quot;,&quot;1.7.0&quot;,&quot;1.6.1&quot;,&quot;1.8.0&quot;,&quot;1.7.1&quot;,&quot;1.8.1&quot;,&quot;1.7.2&quot;,&quot;1.8.2&quot;],
+      &quot;channels&quot;: []
+  }
+}
+</code></pre>
+
+<p>获取某个应用的具体统计数据</p>
+
+<pre><code class="sh">curl -X GET \
+  -H &quot;X-LC-Id: {{appid}}&quot; \
+  -H &quot;X-LC-Key: {{masterkey}},master&quot; \
+  &quot;https://api.leancloud.cn/1.1/stats/appmetrics?platform=iOS&amp;start=20140301&amp;end=20140315&amp;metrics=active_user&quot;
+</code></pre>
+
+<p>具体支持的参数：</p>
+
+<table>
+  <tr><th>参数名</th><th>含义</th></tr>
+  <tr><td>start</td><td>开始日期（yyyyMMdd）</td></tr>
+  <tr><td>end</td><td>结束日期（yyyyMMdd）</td></tr>
+  <tr><td>metrics</td><td>统计数据项</td></tr>
+  <tr><td>platform</td><td>应用平台：iOS、Android，可选，默认是全部。</td></tr>
+  <tr><td>appversion</td><td>选择应用版本，可选，默认是全部。一次取多个版本数据半角逗号（,）分隔，如：1.0,2.0,2.5</td></tr>
+  <tr><td>channel</td><td>选择发布渠道，可选，默认是全部。一次取多个渠道数据请用半角逗号（,）分隔，如：Xiaomi,Meizu</td></tr>
+</table>
+
+<p>metrics 参数可选项解释：</p>
+
+<table>
+  <tr><th>参数值</th><th>含义</th></tr>
+  <tr><td>accumulate_user</td><td>累计用户数</td></tr>
+  <tr><td>new_user</td><td>新增用户数</td></tr>
+  <tr><td>active_user</td><td>活跃用户数</td></tr>
+  <tr><td>session</td><td>启动次数</td></tr>
+  <tr><td>new_user_hour</td><td>新增用户数（按小时查看）</td></tr>
+  <tr><td>active_user_hour</td><td>活跃用户数（按小时查看）</td></tr>
+  <tr><td>session_hour</td><td>启动次数（按小时查看）</td></tr>
+  <tr><td>wau</td><td>周活跃用户数</td></tr>
+  <tr><td>mau</td><td>月活跃用户数</td></tr>
+  <tr><td>avg_user_time</td><td>日平均用户使用时长</td></tr>
+  <tr><td>avg_session_time</td><td>日次均使用时长</td></tr>
+  <tr><td>avg_page_count</td><td>日均访问页面数</td></tr>
+  <tr><td>retention_n</td><td>n 天后的存留用户数（n 可取值：1-7、14、30 如 retention_1）</td></tr>
+  <tr><td>push_login</td><td>推送用户数</td></tr>
+  <tr><td>push_ack</td><td>推送到达数</td></tr>
+  <tr><td>push_session</td><td>聊天用户数</td></tr>
+  <tr><td>push_direct</td><td>聊天消息数</td></tr>
+  <tr><td>active_user_locations</td><td>活跃用户所在地</td></tr>
+  <tr><td>new_user_locations</td><td>新用户所在地</td></tr>
+  <tr><td>device_os</td><td>设备系统版本</td></tr>
+  <tr><td>device_model</td><td>设备型号</td></tr>
+  <tr><td>device_network_access</td><td>设备网络接入方式</td></tr>
+  <tr><td>device_network_carrier</td><td>设备网络运营商</td></tr>
+  <tr><td>device_resolution</td><td>设备分辨率</td></tr>
+  <tr><td>page_visit</td><td>页面访问量</td></tr>
+  <tr><td>page_duration</td><td>页面停留时间</td></tr>
+  <tr><td>active_user_freq_histo</td><td>活跃用户使用次数分布</td></tr>
+  <tr><td>new_user_freq_histo</td><td>新用户使用次数分布</td></tr>
+  <tr><td>active_user_time_histo</td><td>活跃用户使用时长分布</td></tr>
+  <tr><td>new_user_time_histo</td><td>新用户使用时长分布</td></tr>
+  <tr><td>session_time_histo</td><td>单次启动时长分布</td></tr>
+  <tr><td>event_count</td><td>自定义事件次数，请求参数需增加 event 参数。</td></tr>
+  <tr><td>event_user</td><td>自定义事件用户数，请求参数需增加 event 参数。</td></tr>
+  <tr><td>event_duration</td><td>自定义事件时长，请求参数需增加 event 参数。</td></tr>
+  <tr><td>event_label_count</td><td>自定义事件标签分布，请求参数需增加 event， event_label 参数。</td></tr>
+</table>
+
+<p>返回的json数据</p>
+
+<pre><code class="json">{
+  &quot;data&quot;: {
+    &quot;2014-03-01&quot;: 270,
+    &quot;2014-03-02&quot;: 275,
+    &quot;2014-03-03&quot;: 238,
+    &quot;2014-03-04&quot;: 259,
+    &quot;2014-03-05&quot;: 246,
+    &quot;2014-03-06&quot;: 306,
+    &quot;2014-03-07&quot;: 362,
+    &quot;2014-03-08&quot;: 347,
+    &quot;2014-03-09&quot;: 381,
+    &quot;2014-03-10&quot;: 255,
+    &quot;2014-03-11&quot;: 233,
+    &quot;2014-03-12&quot;: 232,
+    &quot;2014-03-13&quot;: 227,
+    &quot;2014-03-14&quot;: 215,
+    &quot;2014-03-15&quot;: 222
+  },
+  &quot;metrics&quot;: &quot;new_user&quot;
+}
+</code></pre>
+
+<p>获取某个应用的实时统计数据：</p>
+
+<pre><code class="sh">curl -X GET \
+  -H &quot;X-LC-Id: {{appid}}&quot; \
+  -H &quot;X-LC-Key: {{masterkey}},master&quot; \
+  &quot;https://api.leancloud.cn/1.1/stats/rtmetrics?platform=iOS&amp;metrics=current_active&quot;
+</code></pre>
+
+<p>具体支持的参数：</p>
+
+<table>
+  <tr><th>参数名</th><th>含义</th></tr>
+  <tr><td>metrics</td><td>统计数据项</td></tr>
+  <tr><td>platform</td><td>应用平台：iOS、Android，可选，默认是全部。</td></tr>
+</table>
+
+<p>metrics参数可选项解释：</p>
+
+<table>
+  <tr><th>参数值</th><th>含义</th></tr>
+  <tr><td>current_active</td><td>活跃用户数</td></tr>
+  <tr><td>30min_active</td><td>近 30 分钟的活跃用户数</td></tr>
+  <tr><td>pages</td><td>用户停留页面</td></tr>
+  <tr><td>events</td><td>用户触发事件</td></tr>
+  <tr><td>locations</td><td>用户所在地</td></tr>
+</table>
+
+<p>返回数据</p>
+
+<pre><code class="json">{data:97, metrics:&quot;current_active&quot;}
+
+{data:[1,3,5,..], metrics:&quot;30min_active&quot;}
+
+{data:[{name:&quot;pageA&quot;, count:3}, {name:&quot;pageB&quot;,count:2}, ...], metrics:&quot;pages&quot;}
+
+{data:[{name:&quot;eventA&quot;, count:3}, {name:&quot;eventB&quot;,count:2}, ...], metrics:&quot;events&quot;}
+
+{data:[{location:&quot;上海&quot;, count:3}, {location:&quot;江苏&quot;, count:2}, ...], metrics:&quot;locations&quot;}
+
+</code></pre>
+
+<p>批量获取：</p>
+
+<p>当需要批量获取统计数据时，可以将多个 metrics 值用半角逗号拼接传入，返回结果将是一个数组，结果值和参数值次序对应，例如：</p>
+
+<pre><code class="sh">curl -X GET \
+  -H &quot;X-LC-Id: {{appid}}&quot; \
+  -H &quot;X-LC-Key: {{masterkey}},master&quot; \
+  &quot;https://api.leancloud.cn/1.1/stats/appmetrics?platform=iOS&amp;start=20140301&amp;end=20140315&amp;metrics=new_user,retention_1&quot;
+</code></pre>
+
+<p>将返回</p>
+
+<pre><code class="json">[
+  {&quot;data&quot;:
+    {&quot;2014-03-01&quot;:371,
+     &quot;2014-03-02&quot;:493,
+     &quot;2014-03-03&quot;:400,
+     &quot;2014-03-04&quot;:407,
+     &quot;2014-03-05&quot;:383,
+     &quot;2014-03-06&quot;:377,
+     &quot;2014-03-07&quot;:416,
+     &quot;2014-03-08&quot;:425,
+     &quot;2014-03-09&quot;:434,
+     &quot;2014-03-10&quot;:364,
+     &quot;2014-03-11&quot;:434,
+     &quot;2014-03-12&quot;:416,
+     &quot;2014-03-13&quot;:400,
+     &quot;2014-03-14&quot;:394},
+    &quot;metrics&quot;:&quot;active_user&quot;,
+  {&quot;data&quot;:
+    {&quot;2014-03-01&quot;:10,
+     &quot;2014-03-02&quot;:5,
+     &quot;2014-03-03&quot;:10,
+     &quot;2014-03-04&quot;:4,
+     &quot;2014-03-05&quot;:6,
+     &quot;2014-03-06&quot;:7,
+     &quot;2014-03-07&quot;:6,
+     &quot;2014-03-08&quot;:6,
+     &quot;2014-03-09&quot;:4,
+     &quot;2014-03-10&quot;:6,
+     &quot;2014-03-11&quot;:6,
+     &quot;2014-03-12&quot;:7,
+     &quot;2014-03-13&quot;:3,
+     &quot;2014-03-14&quot;:7},
+     &quot;metrics&quot;:&quot;retention_1&quot;}]
+</code></pre>
+
+<p>获取统计在线参数，可以获取发送策略，是否开启的设置情况，和自定义的在线配置参数。</p>
+
+<pre><code class="sh">curl -X GET \
+  -H &quot;X-LC-Id: {{appid}}&quot; \
+  -H &quot;X-LC-Key: {{appkey}}&quot; \
+  https://api.leancloud.cn/1.1/statistics/apps/{{appid}}/sendPolicy
+</code></pre>
+
+<p>返回结果：</p>
+
+<pre><code class="json">{
+  &quot;policy&quot;:6, // 发送策略
+  &quot;enable&quot;:true, // 是否开启
+  &quot;parameters&quot;:{ // 自定义在线参数
+    &quot;showBeauty&quot;:&quot;1&quot;
+  }
+}
+</code></pre>
+
+</body>
+</html>

@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>LeanCloudDoc</title>
+
+<style>
+	
+	body{
+    margin: 0 auto;
+    font-family: "Microsoft YaHei", arial,sans-serif;
+    color: #444444;
+    line-height: 1;
+    padding: 30px;
+}
+@media screen and (min-width: 768px) {
+    body {
+        width: 748px;
+        margin: 10px auto;
+    }
+}
+h1, h2, h3, h4 {
+    color: #111111;
+    font-weight: 400;
+    margin-top: 1em;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: Georgia, Palatino, serif;
+}
+h1, h2, h3, h4, h5, p , dl{
+    margin-bottom: 16px;
+    padding: 0;
+}
+h1 {
+    font-size: 48px;
+    line-height: 54px;
+}
+h2 {
+    font-size: 36px;
+    line-height: 42px;
+}
+h1, h2 {
+    border-bottom: 1px solid #EFEAEA;
+    padding-bottom: 10px;
+}
+h3 {
+    font-size: 24px;
+    line-height: 30px;
+}
+h4 {
+    font-size: 21px;
+    line-height: 26px;
+}
+h5 {
+    font-size: 18px;
+    list-style: 23px;
+}
+a {
+    color: #0099ff;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+a:hover {
+    text-decoration: none;
+    color: #ff6600;
+}
+a:visited {
+    /*color: purple;*/
+}
+ul, ol {
+    padding: 0;
+    padding-left: 24px;
+    margin: 0;
+}
+li {
+    line-height: 24px;
+}
+p, ul, ol {
+    font-size: 16px;
+    line-height: 24px;
+}
+
+ol ol, ul ol {
+    list-style-type: lower-roman;
+}
+
+/*pre {
+    padding: 0px 24px;
+    max-width: 800px;
+    white-space: pre-wrap;
+}
+code {
+    font-family: Consolas, Monaco, Andale Mono, monospace;
+    line-height: 1.5;
+    font-size: 13px;
+}*/
+
+code, pre {
+    border-radius: 3px;
+    background-color:#f7f7f7;
+    color: inherit;
+}
+
+code {
+    font-family: Consolas, Monaco, Andale Mono, monospace;
+    margin: 0 2px;
+}
+
+pre {
+    line-height: 1.7em;
+    overflow: auto;
+    padding: 6px 10px;
+    border-left: 5px solid #6CE26C;
+}
+
+pre > code {
+    border: 0;
+    display: inline;
+    max-width: initial;
+    padding: 0;
+    margin: 0;
+    overflow: initial;
+    line-height: inherit;
+    font-size: .85em;
+    white-space: pre;
+    background: 0 0;
+
+}
+
+code {
+    color: #666555;
+}
+
+
+/** markdown preview plus 对于代码块的处理有些问题, 所以使用统一的颜色 */
+/*code .keyword {
+  color: #8959a8;
+}
+
+code .number {
+  color: #f5871f;
+}
+
+code .comment {
+  color: #998
+}*/
+
+aside {
+    display: block;
+    float: right;
+    width: 390px;
+}
+blockquote {
+    border-left:.5em solid #eee;
+    padding: 0 0 0 2em;
+    margin-left:0;
+}
+blockquote  cite {
+    font-size:14px;
+    line-height:20px;
+    color:#bfbfbf;
+}
+blockquote cite:before {
+    content: '\2014 \00A0';
+}
+
+blockquote p {
+    color: #666;
+}
+hr {
+    text-align: left;
+    color: #999;
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+}
+
+dl {
+    padding: 0;
+}
+
+dl dt {
+    padding: 10px 0;
+    margin-top: 16px;
+    font-size: 1em;
+    font-style: italic;
+    font-weight: bold;
+}
+
+dl dd {
+    padding: 0 16px;
+    margin-bottom: 16px;
+}
+
+dd {
+    margin-left: 0;
+}
+
+/* Code below this line is copyright Twitter Inc. */
+
+button,
+input,
+select,
+textarea {
+    font-size: 100%;
+    margin: 0;
+    vertical-align: baseline;
+    *vertical-align: middle;
+}
+button, input {
+    line-height: normal;
+    *overflow: visible;
+}
+button::-moz-focus-inner, input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+    cursor: pointer;
+    -webkit-appearance: button;
+}
+input[type=checkbox], input[type=radio] {
+    cursor: pointer;
+}
+/* override default chrome & firefox settings */
+input:not([type="image"]), textarea {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+input[type="search"] {
+    -webkit-appearance: textfield;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+label,
+input,
+select,
+textarea {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: normal;
+    margin-bottom: 18px;
+}
+input[type=checkbox], input[type=radio] {
+    cursor: pointer;
+    margin-bottom: 0;
+}
+input[type=text],
+input[type=password],
+textarea,
+select {
+    display: inline-block;
+    width: 210px;
+    padding: 4px;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 18px;
+    height: 18px;
+    color: #808080;
+    border: 1px solid #ccc;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+select, input[type=file] {
+    height: 27px;
+    line-height: 27px;
+}
+textarea {
+    height: auto;
+}
+/* grey out placeholders */
+:-moz-placeholder {
+    color: #bfbfbf;
+}
+::-webkit-input-placeholder {
+    color: #bfbfbf;
+}
+input[type=text],
+input[type=password],
+select,
+textarea {
+    -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+    -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+    transition: border linear 0.2s, box-shadow linear 0.2s;
+    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+input[type=text]:focus, input[type=password]:focus, textarea:focus {
+    outline: none;
+    border-color: rgba(82, 168, 236, 0.8);
+    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
+    -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
+}
+/* buttons */
+button {
+    display: inline-block;
+    padding: 4px 14px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    background-color: #0064cd;
+    background-repeat: repeat-x;
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#049cdb), to(#0064cd));
+    background-image: -moz-linear-gradient(top, #049cdb, #0064cd);
+    background-image: -ms-linear-gradient(top, #049cdb, #0064cd);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #049cdb), color-stop(100%, #0064cd));
+    background-image: -webkit-linear-gradient(top, #049cdb, #0064cd);
+    background-image: -o-linear-gradient(top, #049cdb, #0064cd);
+    background-image: linear-gradient(top, #049cdb, #0064cd);
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    border: 1px solid #004b9a;
+    border-bottom-color: #003f81;
+    -webkit-transition: 0.1s linear all;
+    -moz-transition: 0.1s linear all;
+    transition: 0.1s linear all;
+    border-color: #0064cd #0064cd #003f81;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+button:hover {
+    color: #fff;
+    background-position: 0 -15px;
+    text-decoration: none;
+}
+button:active {
+    -webkit-box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+table {
+    *border-collapse: collapse; /* IE7 and lower */
+    border-spacing: 0;
+    width: 100%;
+}
+table {
+    border: solid #ccc 1px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    /*-webkit-box-shadow: 0 1px 1px #ccc;
+    -moz-box-shadow: 0 1px 1px #ccc;
+    box-shadow: 0 1px 1px #ccc;   */
+}
+table tr:hover {
+    background: #fbf8e9;
+    -o-transition: all 0.1s ease-in-out;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+table td, .table th {
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #dce9f9;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ebf3fc), to(#dce9f9));
+    background-image: -webkit-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image:    -moz-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image:     -ms-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image:      -o-linear-gradient(top, #ebf3fc, #dce9f9);
+    background-image:         linear-gradient(top, #ebf3fc, #dce9f9);
+    /*-webkit-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
+    -moz-box-shadow:0 1px 0 rgba(255,255,255,.8) inset;
+    box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;*/
+    border-top: none;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+    padding: 5px;
+}
+
+table td:first-child, table th:first-child {
+    border-left: none;
+}
+
+table th:first-child {
+    -moz-border-radius: 6px 0 0 0;
+    -webkit-border-radius: 6px 0 0 0;
+    border-radius: 6px 0 0 0;
+}
+table th:last-child {
+    -moz-border-radius: 0 6px 0 0;
+    -webkit-border-radius: 0 6px 0 0;
+    border-radius: 0 6px 0 0;
+}
+table th:only-child{
+    -moz-border-radius: 6px 6px 0 0;
+    -webkit-border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 0 0;
+}
+table tr:last-child td:first-child {
+    -moz-border-radius: 0 0 0 6px;
+    -webkit-border-radius: 0 0 0 6px;
+    border-radius: 0 0 0 6px;
+}
+table tr:last-child td:last-child {
+    -moz-border-radius: 0 0 6px 0;
+    -webkit-border-radius: 0 0 6px 0;
+    border-radius: 0 0 6px 0;
+}
+</style>
+
+</head>
+<body>
+ 
+ <h3>统计数据收集 API</h3>
+
+<p>格式概览如下：</p>
+
+<pre><code>curl -i -X POST \
+-H &quot;Content-Type: application/json&quot; \
+-H &quot;X-LC-Id: {{appid}}&quot; \
+-H &quot;X-LC-Key: {{appkey}}&quot; \
+-d \
+&#39;{
+  &quot;client&quot;: {
+    &quot;id&quot;:&quot;vdkGm4dtRNmhQ5gqUTFBiA&quot;,
+    &quot;platform&quot;: &quot;iOS&quot;,
+    &quot;app_version&quot;: &quot;1.0&quot;,
+    &quot;app_channel&quot;: &quot;App Store&quot;
+  },
+  &quot;session&quot;: {
+    &quot;id&quot;:&quot;Q5tYi4BTQ5i3Xuycgr7l&quot;
+  },
+  &quot;events&quot;: [
+    {
+      &quot;event&quot;: &quot;_page&quot;,
+      &quot;duration&quot;: 2000,
+      &quot;tag&quot;: &quot;BookDetail&quot;
+    },
+    {
+      &quot;event&quot;: &quot;buy-item&quot;,
+      &quot;attributes&quot;: {&quot;item-category&quot;: &quot;book&quot;}
+    },
+    {
+      &quot;event&quot;: &quot;_session.close&quot;,
+      &quot;duration&quot;: 10000
+    }
+  ]
+ }&#39; \
+https://api.leancloud.cn/1.1/stats/open/collect
+</code></pre>
+
+<p>统计发送的数据格式包括 3 个节点。</p>
+
+<h4>client 节点</h4>
+
+<p>包括了用户设备和应用的相关信息，这个节点是必选节点。有了这个节点的数据就可以统计出每天的新增、活跃和累计用户，以及用户留存率、流失率等关键数据。</p>
+
+<p>字段|约束|含义
+---|---|---
+id|必选|用户的唯一 id（系统将根据这个 id 来区分新增用户，活跃用户，累计用户等用户相关数据）
+platform|可选|应用的平台（例如 iOS、Android 等）
+app<em>version|可选|应用的版本
+app</em>channel|可选|应用的发布渠道
+os<em>version|可选|系统版本
+device</em>brand|可选|设备品牌
+device<em>model|可选|设备型号
+device</em>resolution|可选|设备分辨率
+network<em>access|可选|网络类型
+network</em>carrier|可选|移动网络运营商</p>
+
+<h4>session 节点</h4>
+
+<p>包含了用户一次启动的数据信息，这个节点是可选节点。有了这个节点的数据，可以统计出用户每天使用应用的频率相关的数据。</p>
+
+<p>字段|约束|含义
+---|---|---
+id|必选|应用一次使用就产生唯一的一个 id</p>
+
+<h4>events 节点</h4>
+
+<p>包含了自定义事件和预定义事件，是一个数组，其中每个元素的结构为：</p>
+
+<p>字段|约束|含义
+---|---|---
+event|必选|事件名称
+attributes|可选|事件属性：包含一个 key-value 的字典。
+duration|可选|事件持续时长
+tag|可选|事件属性的简写方式，等同于属性里面添加：<code>{event: tag}</code> 这个元素。</p>
+
+<h4>预定义的事件</h4>
+
+<h5>页面访问</h5>
+
+<pre><code>{
+  &quot;event&quot;: &quot;_page&quot;, // 必须为 _page 表示一次页面访问
+  &quot;duration&quot;: 100000, // 页面停留时间，单位毫秒
+  &quot;tag&quot;: &quot;HomePage&quot; // 页面名称
+}
+</code></pre>
+
+<h5>session 结束</h5>
+
+<pre><code>{
+  &quot;event&quot;: &quot;_session.close&quot;, //必须为 _session.close 表示一次使用结束
+  &quot;duration&quot;: 60000 // 使用时长，单位毫秒
+}
+</code></pre>
+
+<h2>事件流 API</h2>
+
+<p>请参考 <a href="./status_system.html#REST_API">事件流 REST API</a>。</p>
+
+<h2>应用内搜索 API</h2>
+
+<p>请参考 <a href="./app_search_guide.html#%E6%90%9C%E7%B4%A2_api">搜索 API</a>。</p>
+
+<h2>数据导出 API</h2>
+
+<p>你可以通过请求 <code>/exportData</code> 来导出应用数据：</p>
+
+<pre><code>curl -X POST \
+  -H &quot;X-LC-Id: {{appid}}&quot; \
+  -H &quot;X-LC-Key: {{masterkey}},master&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{}&#39; \
+  https://api.leancloud.cn/1.1/exportData
+</code></pre>
+
+<p><code>exportData</code> 要求使用 master key 来授权。</p>
+
+<p>你还可以指定导出数据的起始时间：</p>
+
+<pre><code>curl -X POST \
+  -H &quot;X-LC-Id: {{appid}}&quot; \
+  -H &quot;X-LC-Key: {{masterkey}},master&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{&quot;from_date&quot;:&quot;2015-09-20&quot;, &quot;to_date&quot;:&quot;2015-09-25&quot;}&#39; \
+  https://api.leancloud.cn/1.1/exportData
+</code></pre>
+
+<p>还可以指定具体的 class 列表，使用逗号隔开：</p>
+
+<pre><code>curl -X POST \
+  -H &quot;X-LC-Id: {{appid}}&quot; \
+  -H &quot;X-LC-Key: {{masterkey}},master&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{&quot;classes&quot;:&quot;_User,GameScore,Post&quot;}&#39; \
+  https://api.leancloud.cn/1.1/exportData
+</code></pre>
+
+<p>增加 <code>only-schema</code> 选项就可以只导出 schema:</p>
+
+<pre><code>curl -X POST \
+  -H &quot;X-LC-Id: {{appid}}&quot; \
+  -H &quot;X-LC-Key: {{masterkey}},master&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{&quot;only-schema&quot;:&quot;true&quot;}&#39; \
+  https://api.leancloud.cn/1.1/exportData
+</code></pre>
+
+<p>导出的 Schema 文件同样可以使用数据导入功能来导入到其他应用。</p>
+
+<p>默认导出的结果将发送到应用的创建者邮箱，你也可以指定接收邮箱：</p>
+
+<pre><code>curl -X POST \
+  -H &quot;X-LC-Id: {{appid}}&quot; \
+  -H &quot;X-LC-Key: {{masterkey}},master&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{&quot;email&quot;:&quot;username@exmaple.com&quot;}&#39; \
+  https://api.leancloud.cn/1.1/exportData
+</code></pre>
+
+<p>调用结果将返回本次任务的 id 和状态：</p>
+
+<pre><code class="json">{
+  &quot;status&quot;:&quot;running&quot;,
+  &quot;id&quot;:&quot;1wugzx81LvS5R4RHsuaeMPKlJqFMFyLwYDNcx6LvCc6MEzQ2&quot;,
+  &quot;app_id&quot;:&quot;{{appid}}&quot;
+}
+</code></pre>
+
+<p>除了被动等待邮件之外，你还可以主动使用 id 去查询导出任务状态：</p>
+
+<pre><code>curl -X GET \
+  -H &quot;X-LC-Id: {{appid}}&quot; \
+  -H &quot;X-LC-Key: {{masterkey}},master&quot; \
+  https://api.leancloud.cn/1.1/exportData/1wugzx81LvS5R4RHsuaeMPKlJqFMFyLwYDNcx6LvCc6MEzQ2
+</code></pre>
+
+<p>如果导出完成，将返回导出结果的下载链接：</p>
+
+<pre><code class="json">{
+  &quot;status&quot;:&quot;done&quot;,
+  &quot;download_url&quot;: &quot;https://download.leancloud.cn/export/example.tar.gz&quot;,
+  &quot;id&quot;:&quot;1wugzx81LvS5R4RHsuaeMPKlJqFMFyLwYDNcx6LvCc6MEzQ2&quot;,
+  &quot;app_id&quot;:&quot;{{appid}}&quot;
+}
+</code></pre>
+
+<p>如果任务还没有完成， <code>status</code> 仍然将为 <code>running</code> 状态，<strong>请间隔一段时间后再尝试查询。</strong></p>
+
+<h2>其他 API</h2>
+
+<p>获取服务端当前日期时间可以通过 <code>/date</code> API:</p>
+
+<pre><code>curl -i -X GET \
+    -H &quot;X-LC-Id: {{appid}}&quot; \
+    -H &quot;X-LC-Key: {{appkey}}&quot; \
+    https://api.leancloud.cn/1.1/date
+</code></pre>
+
+<p>返回 UTC 日期:</p>
+
+<pre><code class="json">{
+  &quot;iso&quot;: &quot;2015-08-27T07:38:33.643Z&quot;,
+  &quot;__type&quot;: &quot;Date&quot;
+}
+</code></pre>
+
+<h2>离线数据分析 API</h2>
+
+</body>
+</html>
